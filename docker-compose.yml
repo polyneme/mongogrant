@@ -17,7 +17,13 @@ services:
 
   flaskapp:
     image: polyneme/mongogrant:dockerize
-    restart: unless-stopped
+    #restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_root_password
+      MGSERVER_PASSWORD_FILE: /run/secrets/mgserver_password
+    secrets:
+      - mongo_root_password
+      - mgserver_password
     ports:
       - "8000:8000"
     depends_on:
@@ -26,6 +32,8 @@ services:
 secrets:
   mongo_root_password:
     file: mongo_root_password.txt
+  mgserver_password:
+    file: mgserver_password.txt
 
 volumes:
   mongodbdata:
