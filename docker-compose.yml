@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+
+  mongo:
+    image: mongo:4.4-bionic
+    command: --bind_ip_all --auth
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_root_password
+    secrets:
+      - mongo_root_password
+    ports:
+      - "57017:27017"
+    volumes:
+      - mongodbdata:/data/db
+
+  flask:
+    build: .
+
+secrets:
+  mongo_root_password:
+    file: mongo_root_password.txt
+
+volumes:
+  mongodbdata:
+    driver: local
