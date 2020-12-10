@@ -9,4 +9,7 @@ update-deps:
 
 update: update-deps init
 
-.PHONY: update-deps init update
+docker-build:
+	./docker-build.sh "polyneme/mongogrant"
+
+.PHONY: update-deps init update docker-build

@@ -1,4 +1,5 @@
 Click
+gunicorn
 Flask
 pymongo
 requests

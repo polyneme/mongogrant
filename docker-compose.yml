@@ -15,8 +15,13 @@ services:
     volumes:
       - mongodbdata:/data/db
 
-  flask:
-    build: .
+  flaskapp:
+    image: polyneme/mongogrant:dockerize
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
 
 secrets:
   mongo_root_password:
