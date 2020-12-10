@@ -20,6 +20,6 @@ ENV PYTHONFAULTHANDLER=1
 
 ARG MG_SETTINGS_FILE=example_settings.py
 COPY $MG_SETTINGS_FILE mg_settings.py
-ENV MONGOGRANT_SETTINGS=mg_settings.py
+ENV MONGOGRANT_SETTINGS=/home/appuser/mg_settings.py
 
 ENTRYPOINT ["tini", "--", "./entrypoint.sh"]
